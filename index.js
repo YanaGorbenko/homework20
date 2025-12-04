@@ -1,51 +1,51 @@
 // Task 1
 
 // 1. Отримати введення
-const checkSumInput = prompt('Введіть суму чека:');
-const tipPercentInput = prompt('Введіть відсоток чайових:');
+const checkSumInput = prompt('Enter the check summ:');
+const tipPercentInput = prompt('Enter tip percentage:');
 
 // 2. Перевірити на відміну (перевіряємо ЩО ВВЕЛИ, не перетворене)
 if (checkSumInput === null || tipPercentInput === null) {
-  alert('Відміна');
+  alert('Canceled.');
 } else {
   // 3. Перетворити на числа
   const checkSum = Number(checkSumInput);
   const tipPercentage = Number(tipPercentInput);
 
   // 4. Тепер перевіряємо числа
-  if (isNaN(checkSum) || isNaN(tipPercentage)) {
-    alert('Щось з введених даних не є числом');
-  } else if (checkSum <= 0 || tipPercentage <= 0) {
-    alert("Щось з введених даних є від'ємним числом або нулем");
-  } else if (tipPercentage > 100) {
-    alert('Відсоток чайових перевищує 100');
+  if (
+    isNaN(checkSum) ||
+    isNaN(tipPercentage) ||
+    checkSum < 0 ||
+    tipPercentage < 0 ||
+    tipPercentage > 100
+  ) {
+    alert('Invalid input data');
   } else {
     // Розрахунок
     let tip = (checkSum * tipPercentage) / 100;
     let sum = tip + checkSum;
-    alert(`Сума чека: ${checkSum}
-Відсоток чайових: ${tipPercentage}%
-Сумма чайових: ${tip}
-Загальна сума до сплати: ${sum}`);
+    alert(`Check summ:${checkSum}
+Tip: ${tipPercentage}%
+Tip amount: ${tip}
+Total sum to pay:  ${sum}`);
   }
 }
 
 // Task 2
 // 1. Отримуємо слово від користувача
-let word = prompt('Введіть слово:');
+let word = prompt('Enter the word:');
 
 // 2. Перевірка на відміну (скасування)
 if (word === null) {
-  alert('Відміна');
+  alert('Canceled.');
 } else {
   // 3. Обрізаємо пробіли з початку і кінця
   word = word.trim();
 
   // 4. Валідація введених даних
-  if (word === '') {
-    alert('Ви не ввели слово');
-  } else if (word.includes(' ')) {
-    alert('Ваше введення містить пробіли');
+  if (word === '' || word.includes(' ')) {
+    alert('Invalid input data');
   } else {
     // 5. Визначаємо довжину слова
     const wordLength = word.length;
@@ -56,15 +56,17 @@ if (word === null) {
       const startIndex = wordLength / 2 - 1; // Індекс першої центральної букви
       const center = word.slice(startIndex, startIndex + 2); // Беремо дві букви
 
-      alert(`Так як введене слово має парну кількість літер (${wordLength}), то посередині стоять дві букви
-Середні букви: ${center}`);
+      alert(`the word length is even  (${wordLength}), — alert the two central characters.
+Word: ${word}
+Result: ${center}`);
     } else {
       // Непарна довжина - одна центральна буква
       const startIndex = Math.floor(wordLength / 2); // Індекс центральної букви
       const center = word.slice(startIndex, startIndex + 1); // Беремо одну букву
 
-      alert(`Так як введене слово має непарну кількість літер (${wordLength}), то посередині стоїть одна буква
-Середня буква: ${center}`);
+      alert(`word length is odd  (${wordLength})— alert the single central character.
+Word: ${word}
+Result: ${center}`);
     }
   }
 }
